@@ -20,13 +20,27 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from '@/components/ui/alert-dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 
-const rolesDisponibles = ['Resolutor', 'Coordinador', 'Administrador', 'Supervisor'];
+const rolesDisponibles = ['Resolutor', 'Coordinador', 'Administrador'];
 const mesasDisponibles = mesasTrabajo.map(m => m.nombre);
 
 export function UsuariosView() {
   const [usuariosList, setUsuariosList] = useState<Usuario[]>(initialUsuarios);
   const [selectedUsuario, setSelectedUsuario] = useState<Usuario | null>(null);
+
+  // New user modal
+  const [showNewModal, setShowNewModal] = useState(false);
+  const [newNombre, setNewNombre] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newRoles, setNewRoles] = useState<string[]>([]);
+  const [newMesas, setNewMesas] = useState<string[]>([]);
 
   // Edit mode
   const [isEditing, setIsEditing] = useState(false);
@@ -37,6 +51,46 @@ export function UsuariosView() {
 
   // Toggle status
   const [showToggleConfirm, setShowToggleConfirm] = useState(false);
+
+  // Open new user modal
+  const handleNew = () => {
+    setNewNombre('');
+    setNewEmail('');
+    setNewRoles([]);
+    setNewMesas([]);
+    setShowNewModal(true);
+  };
+
+  // Close new user modal
+  const closeNewModal = () => {
+    setShowNewModal(false);
+    setNewNombre('');
+    setNewEmail('');
+    setNewRoles([]);
+    setNewMesas([]);
+  };
+
+  // Save new user
+  const saveNewUser = () => {
+    if (!newNombre.trim() || !newEmail.trim()) return;
+    
+    const maxId = Math.max(...usuariosList.map(u => {
+      const numPart = parseInt(u.id.replace('USR-', ''));
+      return isNaN(numPart) ? 0 : numPart;
+    }));
+    
+    const newUser: Usuario = {
+      id: `USR-${String(maxId + 1).padStart(3, '0')}`,
+      nombre: newNombre.trim(),
+      email: newEmail.trim(),
+      roles: newRoles,
+      mesasTrabajo: newMesas,
+      estado: 'activo',
+    };
+    
+    setUsuariosList(prev => [...prev, newUser]);
+    closeNewModal();
+  };
 
   const startEditing = () => {
     if (!selectedUsuario) return;
@@ -278,7 +332,7 @@ export function UsuariosView() {
   // Grid/table view
   return (
     <div className="flex flex-col h-full animate-fade-in">
-      <CommandBar />
+      <CommandBar onNew={handleNew} />
 
       <div className="flex-1 overflow-auto">
         <table className="w-full">
@@ -333,6 +387,80 @@ export function UsuariosView() {
           </tbody>
         </table>
       </div>
+
+      {/* New User Modal */}
+      <Dialog open={showNewModal} onOpenChange={setShowNewModal}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Nuevo Usuario</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            {/* Nombre completo */}
+            <div className="grid gap-2">
+              <Label htmlFor="new-nombre">Nombre Completo</Label>
+              <Input
+                id="new-nombre"
+                value={newNombre}
+                onChange={(e) => setNewNombre(e.target.value)}
+                placeholder="Ingrese el nombre completo"
+              />
+            </div>
+
+            {/* Email */}
+            <div className="grid gap-2">
+              <Label htmlFor="new-email">Email</Label>
+              <Input
+                id="new-email"
+                type="email"
+                value={newEmail}
+                onChange={(e) => setNewEmail(e.target.value)}
+                placeholder="correo@gobierno.gob.ar"
+              />
+            </div>
+
+            {/* Rol */}
+            <div className="grid gap-2">
+              <Label>Rol</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className="w-full justify-between font-normal">
+                    {newRoles.length > 0 ? `${newRoles.length} seleccionado(s)` : 'Seleccionar rol...'}
+                    <ChevronsUpDown className="w-4 h-4 ml-2 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[--radix-popover-trigger-width] p-0 bg-background border z-50" align="start">
+                  <div className="flex flex-col gap-1 p-2 max-h-48 overflow-auto">
+                    {rolesDisponibles.map(rol => (
+                      <label key={rol} className="flex items-center gap-2 text-sm cursor-pointer rounded-sm px-2 py-1.5 hover:bg-accent">
+                        <Checkbox
+                          checked={newRoles.includes(rol)}
+                          onCheckedChange={() => toggleSelection(rol, newRoles, setNewRoles)}
+                        />
+                        {rol}
+                      </label>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+              {newRoles.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {newRoles.map(r => (
+                    <Badge key={r} variant="secondary" className="text-xs">{r}</Badge>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={closeNewModal}>
+              Cancelar
+            </Button>
+            <Button onClick={saveNewUser} disabled={!newNombre.trim() || !newEmail.trim()}>
+              Guardar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
