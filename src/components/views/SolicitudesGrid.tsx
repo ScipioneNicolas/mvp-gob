@@ -75,20 +75,6 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Mesa:</span>
-          <Select value={filterMesa} onValueChange={setFilterMesa}>
-            <SelectTrigger className="w-52 h-8 text-sm">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todas las mesas</SelectItem>
-              <SelectItem value="Mesa de Atención Ciudadana">Atención Ciudadana</SelectItem>
-              <SelectItem value="Mesa de Servicios Sociales">Servicios Sociales</SelectItem>
-              <SelectItem value="Mesa Técnica">Mesa Técnica</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
         <div className="flex-1" />
         <span className="text-sm text-muted-foreground">
           {filteredSolicitudes.length} registros
@@ -118,7 +104,7 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
                   <SortIcon field="estado" />
                 </div>
               </th>
-              <th className="px-4 py-3 font-semibold">Mesa de Trabajo</th>
+              
               <th className="px-4 py-3 font-semibold">Usuario Resolutor</th>
               <th 
                 className="px-4 py-3 font-semibold cursor-pointer hover:bg-muted/50 transition-colors"
@@ -157,7 +143,7 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
                 <td className="px-4 py-3">
                   <StatusBadge status={solicitud.estado} />
                 </td>
-                <td className="px-4 py-3">{solicitud.mesaTrabajo}</td>
+                
                 <td className="px-4 py-3">{solicitud.usuarioResolutor}</td>
                 <td className="px-4 py-3">
                   <PriorityBadge priority={solicitud.prioridad} />
