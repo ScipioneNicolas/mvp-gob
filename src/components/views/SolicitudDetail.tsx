@@ -226,6 +226,17 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
               />
             </div>
           </div>
+          <div className="mt-4 grid grid-cols-1 gap-6">
+            <div className="space-y-2">
+              <Label className="text-muted-foreground text-xs uppercase tracking-wide">Detalle de la solicitud</Label>
+              <Textarea 
+                placeholder="Ingrese el detalle de la solicitud..."
+                defaultValue=""
+                rows={3}
+                className="resize-none"
+              />
+            </div>
+          </div>
         </div>
 
         {/* BLOQUE 5 – DOCUMENTACIÓN */}
