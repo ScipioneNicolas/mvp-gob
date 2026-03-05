@@ -7,6 +7,7 @@ interface CommandBarProps {
   onExport?: () => void;
   showNew?: boolean;
   showExport?: boolean;
+  showMore?: boolean;
   title?: string;
   children?: React.ReactNode;
 }
@@ -17,6 +18,7 @@ export function CommandBar({
   onExport,
   showNew = true,
   showExport = true,
+  showMore = false,
   title,
   children
 }: CommandBarProps) {
@@ -50,9 +52,11 @@ export function CommandBar({
 
 
 
-      <button className="command-btn">
-        <MoreHorizontal className="w-4 h-4" />
-      </button>
+      {showMore && (
+        <button className="command-btn">
+          <MoreHorizontal className="w-4 h-4" />
+        </button>
+      )}
     </div>);
 
 }
