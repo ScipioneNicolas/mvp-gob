@@ -16,13 +16,6 @@ export function AppHeader() {
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="flex-1 max-w-md mx-8">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-header-foreground/50" />
-          <Input placeholder="Buscar solicitudes, usuarios..." className="pl-9 bg-header-foreground/10 border-header-foreground/20 text-header-foreground placeholder:text-header-foreground/50 h-9" />
-        </div>
-      </div>
 
       {/* Right Actions */}
       <div className="flex items-center gap-2">

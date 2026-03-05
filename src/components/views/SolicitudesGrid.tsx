@@ -47,13 +47,7 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
 
   return (
     <div className="flex flex-col h-full animate-fade-in">
-      <CommandBar>
-        <Input 
-          placeholder="Buscar por ID..." 
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-48 h-8"
-        />
+      <CommandBar showNew={false}>
       </CommandBar>
 
       {/* Filters Row */}
