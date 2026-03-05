@@ -19,7 +19,8 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
   const [sortField, setSortField] = useState<SortField>('fechaCreacion');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [filterEstado, setFilterEstado] = useState<string>('todos');
-  const [filterMesa, setFilterMesa] = useState<string>('todos');
+  const [filterResolutor, setFilterResolutor] = useState<string>('todos');
+  const [filterCategoria, setFilterCategoria] = useState<string>('todos');
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSort = (field: SortField) => {
@@ -38,9 +39,13 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
       : <ChevronDown className="w-3.5 h-3.5 text-accent" />;
   };
 
+  const resolutores = [...new Set(solicitudes.map(s => s.usuarioResolutor))];
+  const categorias = [...new Set(solicitudes.map(s => s.categoria))];
+
   const filteredSolicitudes = solicitudes.filter(sol => {
     if (filterEstado !== 'todos' && sol.estado !== filterEstado) return false;
-    if (filterMesa !== 'todos' && sol.mesaTrabajo !== filterMesa) return false;
+    if (filterResolutor !== 'todos' && sol.usuarioResolutor !== filterResolutor) return false;
+    if (filterCategoria !== 'todos' && sol.categoria !== filterCategoria) return false;
     if (searchTerm && !sol.id.toLowerCase().includes(searchTerm.toLowerCase())) return false;
     return true;
   });
@@ -51,7 +56,16 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
       </CommandBar>
 
       {/* Filters Row */}
-      <div className="px-4 py-3 bg-muted/50 border-b border-border flex items-center gap-4">
+      <div className="px-4 py-3 bg-muted/50 border-b border-border flex items-center gap-4 flex-wrap">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">Buscar ID:</span>
+          <Input 
+            placeholder="SOL-2024-..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-40 h-8 text-sm"
+          />
+        </div>
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">Estado:</span>
           <Select value={filterEstado} onValueChange={setFilterEstado}>
@@ -66,6 +80,34 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
               <SelectItem value="pending">Pendiente</SelectItem>
               <SelectItem value="success">Finalizado</SelectItem>
               <SelectItem value="failed">Sin resolución</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">Resolutor:</span>
+          <Select value={filterResolutor} onValueChange={setFilterResolutor}>
+            <SelectTrigger className="w-44 h-8 text-sm">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="todos">Todos</SelectItem>
+              {resolutores.map(r => (
+                <SelectItem key={r} value={r}>{r}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">Categoría:</span>
+          <Select value={filterCategoria} onValueChange={setFilterCategoria}>
+            <SelectTrigger className="w-44 h-8 text-sm">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="todos">Todas</SelectItem>
+              {categorias.map(c => (
+                <SelectItem key={c} value={c}>{c}</SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
