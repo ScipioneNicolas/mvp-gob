@@ -253,8 +253,8 @@ export function UsuariosView() {
                 )}
               </div>
 
-              {/* Mesas de Trabajo */}
-              <div className="py-4 px-2">
+              {/* Mesas de Trabajo - Oculta por configuración */}
+              {/* <div className="py-4 px-2">
                 <Label className="text-muted-foreground font-medium flex items-center gap-2 mb-2">
                   <Building2 className="w-4 h-4" /> Mesas de Trabajo ({isEditing ? editMesas.length : selectedUsuario.mesasTrabajo.length})
                 </Label>
@@ -300,7 +300,7 @@ export function UsuariosView() {
                     )}
                   </div>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
