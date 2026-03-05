@@ -377,14 +377,6 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
           </DialogHeader>
           
           <div className="space-y-4 py-4">
-            <div className="p-3 bg-secondary/50 rounded-lg border border-border">
-              <div className="flex items-center gap-2 text-sm">
-                <Building2 className="w-4 h-4 text-muted-foreground" />
-                <span className="text-muted-foreground">Mesa de Trabajo Actual:</span>
-                <span className="font-medium">{solicitud.mesaTrabajo}</span>
-              </div>
-            </div>
-            
             <div className="space-y-2">
               <Label>Usuario Resolutor</Label>
               <Select value={newResolutor} onValueChange={setNewResolutor}>
