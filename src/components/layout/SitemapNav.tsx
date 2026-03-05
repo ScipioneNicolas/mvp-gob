@@ -7,7 +7,6 @@ interface SitemapNavProps {
 
 const areas = [
   { id: 'operacion', label: 'Operación' },
-  { id: 'seguimiento', label: 'Seguimiento' },
   { id: 'administracion', label: 'Administración' },
 ];
 
