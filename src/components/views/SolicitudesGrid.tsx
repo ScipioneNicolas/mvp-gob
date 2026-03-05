@@ -75,20 +75,6 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Mesa:</span>
-          <Select value={filterMesa} onValueChange={setFilterMesa}>
-            <SelectTrigger className="w-52 h-8 text-sm">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todas las mesas</SelectItem>
-              <SelectItem value="Mesa de Atención Ciudadana">Atención Ciudadana</SelectItem>
-              <SelectItem value="Mesa de Servicios Sociales">Servicios Sociales</SelectItem>
-              <SelectItem value="Mesa Técnica">Mesa Técnica</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
         <div className="flex-1" />
         <span className="text-sm text-muted-foreground">
           {filteredSolicitudes.length} registros
