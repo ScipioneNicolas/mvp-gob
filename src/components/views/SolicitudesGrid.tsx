@@ -104,7 +104,7 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
                   <SortIcon field="estado" />
                 </div>
               </th>
-              <th className="px-4 py-3 font-semibold">Mesa de Trabajo</th>
+              
               <th className="px-4 py-3 font-semibold">Usuario Resolutor</th>
               <th 
                 className="px-4 py-3 font-semibold cursor-pointer hover:bg-muted/50 transition-colors"
