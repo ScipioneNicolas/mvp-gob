@@ -25,7 +25,7 @@ const sidebarConfig: Record<string, { title: string; items: { id: string; label:
     title: 'Operación',
     items: [
       { id: 'solicitudes', label: 'Solicitudes', icon: FileText },
-      { id: 'mis-solicitudes', label: 'Mis Solicitudes', icon: User },
+      
     ],
   },
   seguimiento: {
