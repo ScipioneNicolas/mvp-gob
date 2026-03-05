@@ -88,12 +88,14 @@ const Index = () => {
       
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar */}
-        <Sidebar 
-          activeArea={activeArea} 
-          activeView={activeView}
-          onViewChange={handleViewChange}
-        />
+        {/* Sidebar - hide for operacion since it goes directly to solicitudes */}
+        {activeArea !== 'operacion' && (
+          <Sidebar 
+            activeArea={activeArea} 
+            activeView={activeView}
+            onViewChange={handleViewChange}
+          />
+        )}
         
         {/* Content Area */}
         <main className="flex-1 flex flex-col overflow-hidden bg-muted/30">
