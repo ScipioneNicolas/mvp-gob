@@ -207,7 +207,7 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
           </div>
           <div className="mt-4 grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label className="text-muted-foreground text-xs uppercase tracking-wide">Observación Interna</Label>
+              <Label className="text-muted-foreground text-xs uppercase tracking-wide">GESTIONES REALIZADAS</Label>
               <Textarea 
                 placeholder="Ingrese observaciones internas sobre esta solicitud..."
                 defaultValue={solicitud.observaciones}
