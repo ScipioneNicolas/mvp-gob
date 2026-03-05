@@ -43,7 +43,7 @@ const sidebarConfig: Record<string, { title: string; items: { id: string; label:
     title: 'Administración',
     items: [
       { id: 'usuarios', label: 'Usuarios', icon: Users },
-      { id: 'mesas-trabajo', label: 'Mesas de Trabajo', icon: Building2 },
+      
     ],
   },
 };
