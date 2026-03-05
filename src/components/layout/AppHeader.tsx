@@ -15,8 +15,8 @@ export function AppHeader() {
       </div>
 
 
-      {/* Right Actions */}
-      <div className="flex items-center gap-2">
+      {/* Right Actions - Login/User section aligned to right edge */}
+      <div className="flex items-center gap-2 ml-auto">
         <Button variant="ghost" size="icon" className="text-header-foreground/80 hover:text-header-foreground hover:bg-header-foreground/10">
           
         </Button>
