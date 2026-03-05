@@ -288,7 +288,6 @@ export function UsuariosView() {
               <th className="px-4 py-3 font-semibold">Nombre</th>
               <th className="px-4 py-3 font-semibold">Email</th>
               <th className="px-4 py-3 font-semibold">Rol(es)</th>
-              <th className="px-4 py-3 font-semibold">Mesas de Trabajo</th>
               <th className="px-4 py-3 font-semibold">Estado</th>
             </tr>
           </thead>
@@ -317,16 +316,6 @@ export function UsuariosView() {
                       <Badge key={rol} variant="secondary" className="text-xs">
                         <Shield className="w-3 h-3 mr-1" />
                         {rol}
-                      </Badge>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-4 py-3">
-                  <div className="flex items-center gap-1 flex-wrap">
-                    {usuario.mesasTrabajo.map((mesa) => (
-                      <Badge key={mesa} variant="outline" className="text-xs">
-                        <Building2 className="w-3 h-3 mr-1" />
-                        {mesa}
                       </Badge>
                     ))}
                   </div>
