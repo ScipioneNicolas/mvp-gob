@@ -42,7 +42,6 @@ const sidebarConfig: Record<string, { title: string; items: { id: string; label:
   administracion: {
     title: 'Administración',
     items: [
-      { id: 'usuarios', label: 'Usuarios', icon: Users },
       
     ],
   },

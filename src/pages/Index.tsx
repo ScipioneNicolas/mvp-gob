@@ -88,8 +88,8 @@ const Index = () => {
       
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar - hide for operacion since it goes directly to solicitudes */}
-        {activeArea !== 'operacion' && (
+        {/* Sidebar - hide for operacion and administracion since they go directly to content */}
+        {activeArea !== 'operacion' && activeArea !== 'administracion' && (
           <Sidebar 
             activeArea={activeArea} 
             activeView={activeView}
