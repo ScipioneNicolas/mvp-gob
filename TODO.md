@@ -1,0 +1,1 @@
+- [x] Ocultar el botón "Exportar" en MetricasGenerales.tsx agregando showExport={false} al componente CommandBar
