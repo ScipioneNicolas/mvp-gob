@@ -44,6 +44,7 @@
     --status-pending: 45 90% 55%;
     --status-success: 145 65% 42%;
     --status-failed: 0 70% 50%;
+    --status-inactive: 0 70% 50%;
 
     /* UI Colors */
     --border: 210 20% 88%;
@@ -173,6 +174,11 @@
   .badge-failed {
     @apply text-white;
     background-color: hsl(var(--status-failed));
+  }
+  
+  .badge-inactive {
+    @apply text-white;
+    background-color: hsl(var(--status-inactive));
   }
 
   /* Priority Badges */

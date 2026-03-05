@@ -186,7 +186,7 @@ export function UsuariosView() {
                 <Label className="text-muted-foreground font-medium">Estado</Label>
                 <span className={cn(
                   "badge-status",
-                  selectedUsuario.estado === 'activo' ? 'badge-success' : 'badge-initiated'
+                  selectedUsuario.estado === 'activo' ? 'badge-success' : 'badge-inactive'
                 )}>
                   {selectedUsuario.estado === 'activo' ? 'Activo' : 'Inactivo'}
                 </span>
@@ -377,7 +377,7 @@ export function UsuariosView() {
                 <td className="px-4 py-3">
                   <span className={cn(
                     "badge-status",
-                    usuario.estado === 'activo' ? 'badge-success' : 'badge-initiated'
+                    usuario.estado === 'activo' ? 'badge-success' : 'badge-inactive'
                   )}>
                     {usuario.estado === 'activo' ? 'Activo' : 'Inactivo'}
                   </span>
