@@ -177,15 +177,15 @@
 
   /* Priority Badges */
   .priority-high {
-    @apply bg-red-100 text-red-700 border border-red-200;
+    @apply text-foreground font-medium;
   }
   
   .priority-medium {
-    @apply bg-yellow-100 text-yellow-700 border border-yellow-200;
+    @apply text-foreground font-medium;
   }
   
   .priority-low {
-    @apply bg-green-100 text-green-700 border border-green-200;
+    @apply text-foreground font-medium;
   }
 
   /* Model-Driven Grid */
