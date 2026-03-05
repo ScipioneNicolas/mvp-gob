@@ -1,7 +1,5 @@
-import { Search, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import gobiernoLogo from '@/assets/gobierno-logo.jpg';
 
 export function AppHeader() {
   return <header className="h-14 bg-header flex items-center justify-between px-6 border-b border-sidebar-border">
@@ -29,9 +27,6 @@ export function AppHeader() {
           
           
         </Button>
-        <div className="w-px h-6 bg-header-foreground/20 mx-2"></div>
-        {/* Government Logo */}
-        <img src={gobiernoLogo} alt="Gobierno de Córdoba" className="h-10 object-contain" />
         <div className="w-px h-6 bg-header-foreground/20 mx-2"></div>
         <Button variant="ghost" className="text-header-foreground/80 hover:text-header-foreground hover:bg-header-foreground/10 gap-2">
           <div className="w-7 h-7 rounded-full bg-header-foreground/20 flex items-center justify-center">
