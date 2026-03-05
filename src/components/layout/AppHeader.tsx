@@ -6,7 +6,7 @@ import gobiernoLogo from '@/assets/gobierno-logo.jpg';
 export function AppHeader() {
   return <header className="h-14 bg-header flex items-center justify-between px-6 border-b border-sidebar-border">
       {/* Logo and App Name */}
-      <div className="flex items-center gap-3">
+      <div className="hidden flex items-center gap-3">
         <div className="w-8 h-8 bg-header-foreground/20 rounded-md flex items-center justify-center">
           <span className="text-header-foreground font-bold text-sm">SS</span>
         </div>
