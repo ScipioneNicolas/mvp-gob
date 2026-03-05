@@ -21,7 +21,6 @@ import {
   Building2,
   User,
   RefreshCw,
-  ArrowRightLeft,
   UserCog
 } from 'lucide-react';
 
@@ -36,14 +35,11 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
   // Modal states
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [showAssignModal, setShowAssignModal] = useState(false);
-  const [showMesaModal, setShowMesaModal] = useState(false);
   
   // Form states for modals
   const [newStatus, setNewStatus] = useState<SolicitudStatus | ''>('');
   const [statusObservation, setStatusObservation] = useState('');
   const [newResolutor, setNewResolutor] = useState('');
-  const [newMesa, setNewMesa] = useState('');
-  const [mesaComment, setMesaComment] = useState('');
 
   if (!solicitud) {
     return (
@@ -68,14 +64,6 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
     setNewResolutor('');
   };
 
-  const handleMesaChange = () => {
-    // Handle mesa change logic here
-    console.log('Changing mesa to:', newMesa, 'with comment:', mesaComment);
-    setShowMesaModal(false);
-    setNewMesa('');
-    setMesaComment('');
-  };
-
   return (
     <div className="flex flex-col h-full animate-fade-in">
       {/* Command Bar */}
@@ -98,10 +86,6 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
         <button onClick={() => setShowAssignModal(true)} className="command-btn">
           <UserCog className="w-4 h-4" />
           <span>Asignar / Reasignar resolutor</span>
-        </button>
-        <button onClick={() => setShowMesaModal(true)} className="command-btn">
-          <ArrowRightLeft className="w-4 h-4" />
-          <span>Cambiar Mesa de Trabajo</span>
         </button>
         
         <div className="flex-1" />
@@ -454,79 +438,6 @@ export function SolicitudDetail({ solicitudId, onBack }: SolicitudDetailProps) {
         </DialogContent>
       </Dialog>
 
-      {/* MODAL: Cambiar Mesa de Trabajo */}
-      <Dialog open={showMesaModal} onOpenChange={setShowMesaModal}>
-        <DialogContent className="sm:max-w-[480px]">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-lg">
-              <ArrowRightLeft className="w-5 h-5 text-accent" />
-              Cambiar Mesa de Trabajo
-            </DialogTitle>
-            <DialogDescription>
-              Reasigne la solicitud <span className="font-semibold text-foreground">{solicitud.id}</span> a otra mesa de trabajo
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4 py-4">
-            <div className="p-3 bg-secondary/50 rounded-lg border border-border">
-              <div className="flex items-center gap-2 text-sm">
-                <Building2 className="w-4 h-4 text-muted-foreground" />
-                <span className="text-muted-foreground">Mesa Actual:</span>
-                <span className="font-medium">{solicitud.mesaTrabajo}</span>
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label>Nueva Mesa de Trabajo</Label>
-              <Select value={newMesa} onValueChange={setNewMesa}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Seleccione una mesa..." />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Mesa de Atención Ciudadana">
-                    <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4" />
-                      Mesa de Atención Ciudadana
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="Mesa de Servicios Sociales">
-                    <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4" />
-                      Mesa de Servicios Sociales
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="Mesa Técnica">
-                    <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4" />
-                      Mesa Técnica
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="space-y-2">
-              <Label>Comentario Interno <span className="text-muted-foreground text-xs">(opcional)</span></Label>
-              <Textarea 
-                placeholder="Ingrese un comentario sobre el cambio de mesa..."
-                value={mesaComment}
-                onChange={(e) => setMesaComment(e.target.value)}
-                rows={3}
-                className="resize-none"
-              />
-            </div>
-          </div>
-          
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowMesaModal(false)}>
-              Cancelar
-            </Button>
-            <Button onClick={handleMesaChange} disabled={!newMesa} className="bg-primary">
-              Confirmar cambio
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
