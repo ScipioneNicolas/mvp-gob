@@ -143,7 +143,7 @@ export function SolicitudesGrid({ onSelectSolicitud }: SolicitudesGridProps) {
                 <td className="px-4 py-3">
                   <StatusBadge status={solicitud.estado} />
                 </td>
-                <td className="px-4 py-3">{solicitud.mesaTrabajo}</td>
+                
                 <td className="px-4 py-3">{solicitud.usuarioResolutor}</td>
                 <td className="px-4 py-3">
                   <PriorityBadge priority={solicitud.prioridad} />
